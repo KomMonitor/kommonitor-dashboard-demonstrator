@@ -1,0 +1,13 @@
+<gridster [options]="options" class="empty">
+  @for (item of items; track item) {
+  <gridster-item [item]="item" [ngClass]="{'item-placeholder': item.placeholder}">
+    <div *ngIf="item.placeholder">
+      {{item.label}}
+      <button><i class="fa-solid fa-plus"></i>Widget hinzufügen</button>
+    </div>
+    <div *ngIf="!item.placeholder">
+      {{item.label}}
+    </div>
+  </gridster-item>
+  }
+</gridster>

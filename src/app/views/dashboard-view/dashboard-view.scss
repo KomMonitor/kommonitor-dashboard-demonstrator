@@ -1,6 +1,11 @@
-@use '../../../styles/variables.scss' as *;
+@use "variables" as *;
 
 :host {
+
+  .grid-wrapper {
+    height: 100%;
+    display: block;
+  }
  
   .empty-notification-wrapper {
     width: 100%;

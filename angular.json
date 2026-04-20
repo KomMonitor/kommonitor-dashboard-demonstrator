@@ -30,8 +30,13 @@
               }
             ],
             "styles": [
-              "src/styles/styles.scss"
+              "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "polyfills": ["@angular/localize/init"]
           },
           "configurations": {

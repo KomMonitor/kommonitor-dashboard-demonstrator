@@ -55,4 +55,13 @@ body {
     border-top: 1px solid $kmd-border-color;
     opacity: 1;
   }
+
+  .modal-wrapper {
+    padding: 1em;
+
+    header {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
 }

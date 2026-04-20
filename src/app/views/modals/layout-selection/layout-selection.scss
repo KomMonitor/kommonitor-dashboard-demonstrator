@@ -1,0 +1,39 @@
+@use "variables" as *;
+
+:host {
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .layout-item {
+    font-size: 13px;
+    height: 15em;
+    display: grid;
+    grid-template-rows: min-content min-content auto;
+    border: 1px solid $kmd-border-color;
+    padding: .8em;
+    border-radius: .4em;
+
+    .layout-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: .5em;
+    }
+
+    .grid-layout {
+      background-color: rgb(243, 244, 246);
+      border: 1px dashed rgb(229, 231, 235);
+      margin-top: .5em;
+      padding: .3em;
+      color: rgb(156, 163, 175);
+    }
+
+    .grid-layout.empty {
+      display: flex;
+      justify-content: center;  
+      align-items: center;
+    }
+  }
+}

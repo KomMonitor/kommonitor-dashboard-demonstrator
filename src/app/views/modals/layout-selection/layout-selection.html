@@ -1,0 +1,15 @@
+<div class="modal-wrapper">
+  <header>
+    Layout Vorlage auswählen
+  </header>
+  <hr>
+  <section>
+    <div class="layout-item" *ngFor="let item of gridHandler.layoutOptions" (click)="onLayoutOptionSelected(item.id)">
+      <p class="layout-title">{{item.title}}</p>
+      {{item.description}}
+      <div class="grid-layout empty">
+        Leer
+      </div>
+    </div>
+  </section>
+</div>
