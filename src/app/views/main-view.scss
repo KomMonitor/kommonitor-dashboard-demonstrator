@@ -1,0 +1,47 @@
+@use '../../styles/variables.scss' as *;
+
+:host {
+
+  .main-wrapper {
+    display: block;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: min-content auto;
+
+    .sidebar-wrapper {
+      border-right: 1px solid $kmd-border-color;
+      padding: 1em;
+    }
+
+    .dashboard-wrapper {
+      display: grid;
+      grid-template-rows: min-content auto min-content; 
+      background-color: rgb(249, 250, 251);
+
+      .header {
+        display: grid;
+        grid-template-columns: min-content min-content auto;
+        gap: .8em;
+        padding: 1em;
+
+        .logo {
+          height:40px;
+          width: auto;
+        }
+
+      }
+
+      .dashboard {
+        padding: 1em;
+      }
+
+      footer {
+        border-top: 1px solid $kmd-border-color;
+        background-color: #fff;
+        padding: 1em;
+        text-align: center;
+        font-size: .8em;
+      }
+    }
+  }
+}

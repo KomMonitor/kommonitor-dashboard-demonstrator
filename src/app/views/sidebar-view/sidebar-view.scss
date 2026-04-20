@@ -1,0 +1,15 @@
+:host {
+  .menu-item {
+    color: rgb(55, 65, 81);
+    display: inline-flex;
+    align-items: center;  
+    gap: .5em;         
+    font-size: 14px;
+    padding: .7em 1em;
+    white-space: nowrap;
+
+    i {
+      font-size: 16px;
+    }
+  }
+}

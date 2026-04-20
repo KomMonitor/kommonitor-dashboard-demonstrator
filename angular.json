@@ -30,8 +30,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
-            ]
+              "src/styles/styles.scss"
+            ],
+            "polyfills": ["@angular/localize/init"]
           },
           "configurations": {
             "production": {
