@@ -16,6 +16,7 @@
     border: 1px solid $kmd-border-color;
     padding: .8em;
     border-radius: .4em;
+    cursor: pointer;
 
     .layout-title {
       font-size: 14px;
@@ -29,7 +30,7 @@
       margin-top: .5em;
       padding: .3em;
       color: rgb(156, 163, 175);
-        gap: .3em;
+      gap: .3em;
       
       &.empty {
         display: flex;

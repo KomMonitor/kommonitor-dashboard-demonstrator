@@ -11,8 +11,6 @@ import { GridHandler, KMD_GridsterItem } from '../../services/grid/grid-handler'
   styleUrl: './dashboard-grid.scss',
 })
 export class DashboardGrid implements OnInit {
-
-  @Input() layoutId!: number;
  
   options: GridsterConfig = {
     minRows: 12,
@@ -34,6 +32,7 @@ export class DashboardGrid implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.items = this.gridHandler.layoutOptions[this.layoutId].layout;
+    if(this.gridHandler.selectedLayout.layoutId!=undefined)
+      this.items = this.gridHandler.layoutOptions[this.gridHandler.selectedLayout.layoutId].layout;
   }
 }

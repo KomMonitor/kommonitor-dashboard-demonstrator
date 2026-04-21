@@ -4,7 +4,7 @@
   </header>
   <hr>
   <section>
-    <div class="layout-item" *ngFor="let item of gridHandler.layoutOptions" (click)="onLayoutOptionSelected(item.id)">
+    <div class="layout-item" *ngFor="let item of gridHandler.layoutOptions" (click)="onLayoutOptionSelected(item)">
       <p class="layout-title">{{item.title}}</p>
       {{item.description}}
       <div class="grid-layout" [ngClass]="item.cssClassForSelection" [innerHTML]="buildWidgetPreview(item)"></div>

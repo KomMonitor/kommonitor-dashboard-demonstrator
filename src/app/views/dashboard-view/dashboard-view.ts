@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 import { LayoutSelection } from '../modals/layout-selection/layout-selection';
+import { GridHandler } from '../../services/grid/grid-handler';
 
 @Component({
   selector: 'dashboard-view',
@@ -21,26 +22,22 @@ export class DashboardView implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private gridHandler: GridHandler
   ) {}
 
   ngOnInit(): void {
-    this.onClickAddLayout();
+    //this.onClickAddLayout();
+
+    this.gridHandler.dashboardDefinition$.subscribe(value => {
+      this.layoutSelected = value.layoutId != null;
+      this.cdr.detectChanges();
+    });
   }
 
   onClickAddLayout() {
     const modalRef = this.modalService.open(LayoutSelection,{
       size: 'xl'
     });
-
-    modalRef.result.then(
-      (result) => {
-        console.log('Selected layout', result);
-        this.layoutId = result;
-        this.layoutSelected = true;
-        this.cdr.detectChanges();
-      },
-      (reason) => {}
-    );
   }
 }

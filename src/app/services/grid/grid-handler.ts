@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export interface GridLayoutOption {
   id: number;
@@ -18,10 +19,20 @@ export interface KMD_GridsterItem {
   previewLabel?: string;
 }
 
+export interface DashboardSubject {
+  layoutId: number | undefined;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class GridHandler {
+
+  private dashboardDefinition = new BehaviorSubject<DashboardSubject>({
+    layoutId: 0 // undefined
+  });
+
+  dashboardDefinition$ = this.dashboardDefinition.asObservable();
 
   layoutOptions: GridLayoutOption[] = [{
     id: 0,
@@ -68,4 +79,16 @@ export class GridHandler {
     ],
     cssClassForSelection: 'horizontal_five'
   }];
+
+  get selectedLayout():DashboardSubject {
+    return this.dashboardDefinition.getValue();
+  }
+
+  setSelectedLayout(layoutId:number | undefined) {
+    this.dashboardDefinition.next({...this.dashboardDefinition.value, layoutId: layoutId});
+  }
+
+  resetSelectedLayout() {
+    this.dashboardDefinition.next({...this.dashboardDefinition.value, layoutId: undefined});
+  }
 }

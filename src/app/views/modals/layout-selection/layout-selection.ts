@@ -17,8 +17,10 @@ export class LayoutSelection {
     private activeModal: NgbActiveModal
   ) {}
 
-  onLayoutOptionSelected(optionId: number) {
-    this.activeModal.close(optionId);
+  onLayoutOptionSelected(layout: GridLayoutOption) {
+
+    this.gridHandler.setSelectedLayout(layout.id);
+    this.activeModal.close();
   }
 
   buildWidgetPreview(item:GridLayoutOption):string {
