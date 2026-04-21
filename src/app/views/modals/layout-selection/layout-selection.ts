@@ -20,4 +20,12 @@ export class LayoutSelection {
   onLayoutOptionSelected(optionId: number) {
     this.activeModal.close(optionId);
   }
+
+  buildWidgetPreview(item:GridLayoutOption):string {
+    
+    if(item.id==0)
+      return 'Leer';
+
+    return item.layout.map(elem => `<div>${elem.previewLabel}</div>`).join('');
+  }
 }

@@ -25,7 +25,7 @@ export class DashboardView implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //this.onClickAddLayout();
+    this.onClickAddLayout();
   }
 
   onClickAddLayout() {
