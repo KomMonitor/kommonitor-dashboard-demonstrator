@@ -56,6 +56,16 @@ body {
     opacity: 1;
   }
 
+  .btn-highlight {
+    background-color: rgb(232, 243, 250);
+    color: $kmd-primary-dark;
+  }
+
+  .btn-secondary {
+    background-color: $kmd-gray;
+    color: $kmd-title-color;
+  }
+
   .modal-wrapper {
     padding: 1em;
 

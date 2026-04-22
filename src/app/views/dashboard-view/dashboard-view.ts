@@ -39,7 +39,8 @@ export class DashboardView implements OnInit {
 
   onClickAddLayout() {
     const modalRef = this.modalService.open(LayoutSelection,{
-      size: 'xl'
+      size: 'xl',
+      centered: true
     });
   }
 }

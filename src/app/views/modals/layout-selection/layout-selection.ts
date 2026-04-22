@@ -30,4 +30,11 @@ export class LayoutSelection {
 
     return item.layout.map(elem => `<div>${elem.previewLabel}</div>`).join('');
   }
+  close() {
+    this.activeModal.close();
+  }
+
+  dismiss() {
+    this.activeModal.dismiss();
+  }
 }

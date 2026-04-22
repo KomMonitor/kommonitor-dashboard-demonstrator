@@ -3,7 +3,7 @@
   <gridster-item [item]="item" [ngClass]="{'item-placeholder': item.placeholder}">
     <div *ngIf="item.placeholder">
       {{item.label}}
-      <button><i class="fa-solid fa-plus"></i>Widget hinzufügen</button>
+      <button (click)="onAddWidgetClick(item)"><i class="fa-solid fa-plus"></i>Widget hinzufügen</button>
     </div>
     <div *ngIf="!item.placeholder">
       {{item.label}}

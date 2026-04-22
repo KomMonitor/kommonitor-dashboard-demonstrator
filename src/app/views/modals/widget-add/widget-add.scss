@@ -1,0 +1,18 @@
+@use "variables" as *;
+
+:host {
+
+  section {
+
+    .type-selection {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+  }
+
+  footer {
+    text-align: right;
+    margin-top: 1em;
+  }
+}

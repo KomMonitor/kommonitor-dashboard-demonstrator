@@ -24,6 +24,13 @@ export interface DashboardSubject {
   layoutId: number | undefined;
 }
 
+export enum KMD_WidgetTypes {
+  TEXT,
+  BARCHART,
+  TIMESERIES,
+  DATATABLE
+}
+
 @Injectable({
   providedIn: 'root',
 })
