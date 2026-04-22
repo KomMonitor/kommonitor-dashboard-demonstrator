@@ -1,0 +1,12 @@
+<ngb-toast
+  *ngFor="let toast of toastService.toasts"
+  [class]="toast.classname"
+  [autohide]="true"
+  [delay]="toast.delay || 5000"
+  (hidden)="toastService.remove(toast)"
+>
+  <i class="fa-solid fa-circle-check" *ngIf="toast.type==toastTypes.SUCCESS"></i> 
+  <i class="fa-solid fa-circle-info" *ngIf="toast.type==toastTypes.INFO"></i>
+  <i class="fa-solid fa-circle-xmark" *ngIf="toast.type==toastTypes.ERROR"></i>
+  {{ toast.text }}
+</ngb-toast>

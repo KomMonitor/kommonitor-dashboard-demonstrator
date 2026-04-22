@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ToastService } from '../toast/toast-service';
 
 export interface GridLayoutOption {
   id: number;
@@ -80,15 +81,21 @@ export class GridHandler {
     cssClassForSelection: 'horizontal_five'
   }];
 
+  constructor(
+    private toastService: ToastService
+  ) {}
+
   get selectedLayout():DashboardSubject {
     return this.dashboardDefinition.getValue();
   }
 
   setSelectedLayout(layoutId:number | undefined) {
     this.dashboardDefinition.next({...this.dashboardDefinition.value, layoutId: layoutId});
+    this.toastService.success('Layout angewendet');
   }
 
   resetSelectedLayout() {
     this.dashboardDefinition.next({...this.dashboardDefinition.value, layoutId: undefined});
+    this.toastService.info('Dashboard komplett geleert');
   }
 }

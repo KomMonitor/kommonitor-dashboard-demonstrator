@@ -1,0 +1,16 @@
+@use "variables" as *;
+
+:host {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1200;
+
+  .toast-success {
+    background-color: rgb(34, 197, 94);
+  }
+
+  .toast-info {
+    background-color: $kmd-primary-color;
+  }
+}

@@ -4,6 +4,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 import { LayoutSelection } from '../modals/layout-selection/layout-selection';
 import { GridHandler } from '../../services/grid/grid-handler';
+import { ToastService } from '../../services/toast/toast-service';
 
 @Component({
   selector: 'dashboard-view',
@@ -23,7 +24,8 @@ export class DashboardView implements OnInit {
   constructor(
     private modalService: NgbModal,
     private cdr: ChangeDetectorRef,
-    private gridHandler: GridHandler
+    private gridHandler: GridHandler,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
