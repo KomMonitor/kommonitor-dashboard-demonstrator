@@ -9,10 +9,26 @@
       flex-direction: column;
       gap: 1em;
     }
+
+    .split-view {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
+    }
+
+    form {
+      > div {
+        margin-bottom: 1.5em;
+      }
+    }
   }
 
   footer {
     text-align: right;
     margin-top: 1em;
+
+    button {
+      margin-left: 1em;
+    }
   }
 }

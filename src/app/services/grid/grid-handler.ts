@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ToastService } from '../toast/toast-service';
+import { v4 as uuidv4 } from "uuid";
 
 export interface GridLayoutOption {
   id: number;
@@ -11,6 +12,7 @@ export interface GridLayoutOption {
 }
 
 export interface KMD_GridsterItem {
+  id?: string;
   cols: number;
   rows: number;
   y: number;
@@ -18,10 +20,13 @@ export interface KMD_GridsterItem {
   label: string;
   placeholder?: boolean
   previewLabel?: string;
+  content?: any;
+  type?: KMD_WidgetTypes;
 }
 
 export interface DashboardSubject {
   layoutId: number | undefined;
+  widgets: KMD_GridsterItem[];
 }
 
 export enum KMD_WidgetTypes {
@@ -31,13 +36,21 @@ export enum KMD_WidgetTypes {
   DATATABLE
 }
 
+export interface WidgetFormObject {
+  title: any;
+  width: any;
+  height: any;
+  data: any;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class GridHandler {
 
-  private dashboardDefinition = new BehaviorSubject<DashboardSubject>({
-    layoutId: 0 // undefined
+  public dashboardDefinition = new BehaviorSubject<DashboardSubject>({
+    layoutId: 0, // undefined,
+    widgets: []
   });
 
   dashboardDefinition$ = this.dashboardDefinition.asObservable();
@@ -47,7 +60,7 @@ export class GridHandler {
     title: 'Leeres Dashboard',
     description: 'Beginnen Sie mit einer komplett leeren Fläche',
     layout: [
-      { cols: 4, rows: 4, y: 0, x: 0, label: 'Platzhalter', placeholder: true }
+      { id: '', cols: 4, rows: 4, y: 0, x: 0, label: 'Platzhalter', placeholder: true }
     ],
     cssClassForSelection: 'empty'
   },
@@ -92,8 +105,19 @@ export class GridHandler {
     private toastService: ToastService
   ) {}
 
-  get selectedLayout():DashboardSubject {
-    return this.dashboardDefinition.getValue();
+  get selectedLayout():number {
+    return this.dashboardDefinition.value.layoutId!;
+  }
+
+  get widgets():KMD_GridsterItem[] {
+    return this.dashboardDefinition.value.widgets;
+  }
+
+
+  initGrid() {
+    if(this.selectedLayout!=undefined)
+      this.dashboardDefinition.next({...this.dashboardDefinition.value, widgets: this.setUuid(this.layoutOptions[this.selectedLayout].layout)});
+
   }
 
   setSelectedLayout(layoutId:number | undefined) {
@@ -104,5 +128,34 @@ export class GridHandler {
   resetSelectedLayout() {
     this.dashboardDefinition.next({...this.dashboardDefinition.value, layoutId: undefined});
     this.toastService.info('Dashboard komplett geleert');
+  }
+
+  // more like replace placeholder
+  addWidget(widget: KMD_GridsterItem, type: KMD_WidgetTypes, formData:WidgetFormObject) {
+
+    const current = this.dashboardDefinition.value;
+
+    const updatedWidget = current.widgets.map(elem => 
+      elem.id==widget.id ? {
+        ...elem, 
+        cols: formData.width,
+        rows: formData.height,
+        label: formData.title,
+        type: type,
+        placeholder: false, 
+        previewLabel: undefined,
+        content: formData.data.content
+      } : elem
+    );
+
+    this.dashboardDefinition.next({
+      ...current,
+      widgets: updatedWidget
+    });
+  }
+
+  setUuid(items:KMD_GridsterItem[]):KMD_GridsterItem[] {
+
+    return items.map(elem => {elem.id = uuidv4(); return elem;});
   }
 }

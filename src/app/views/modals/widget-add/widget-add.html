@@ -1,17 +1,48 @@
 <div class="modal-wrapper">
   <header>
-    Diagram-Typ auswählen
+    <span *ngIf="selectedWidgetType==undefined">Diagram-Typ auswählen</span>
+    <span *ngIf="selectedWidgetType!=undefined">Neues Widget erstellen</span>
   </header>
   <hr>
   <section>
-    <div *ngIf="!selectedWidgetType" class="type-selection">
+    <div *ngIf="selectedWidgetType==undefined" class="type-selection">
       <button class="btn-highlight" (click)="onWidgetTypeSelectionClick(widgetTypeOptions.BARCHART)"><i class="fa-solid fa-chart-bar"></i>Balkendiagramm</button>
       <button class="btn-highlight" (click)="onWidgetTypeSelectionClick(widgetTypeOptions.TIMESERIES)"><i class="fa-solid fa-chart-line"></i>Zeitreihendiagramm</button>
       <button class="btn-highlight" (click)="onWidgetTypeSelectionClick(widgetTypeOptions.DATATABLE)"><i class="fa-solid fa-table"></i>Tabelle</button>
       <button class="btn-highlight" (click)="onWidgetTypeSelectionClick(widgetTypeOptions.TEXT)"><i class="fa-solid fa-keyboard"></i>Freitextfeld</button>
     </div>
+
+    <div *ngIf="selectedWidgetType!=undefined">
+      <form [formGroup]="widgetForm">
+        <div>
+          <label for="title" class="form-label">Titel</label>
+          <input id="title" type="text" class="form-control" formControlName="title">
+        </div>
+        <div>
+          <h3>Grid Größe (GridStack Einheiten)</h3>
+          <hr class="small">
+          <div class="split-view">
+            <div>
+              <label for="width" class="form-label">Breite (Width)</label>
+              <input id="width" type="number" class="form-control" formControlName="width" min="1" max="12" step="1">
+            </div>
+            <div>
+              <label for="height" class="form-label">Höhe (Height)</label>
+              <input id="height" type="number" class="form-control" formControlName="height" min="1" max="12" step="1">
+            </div>
+          </div>
+        </div>
+        <div formGroupName="data">
+          <h3>Daten</h3>
+          <hr class="small">
+          <label for="content" class="form-label">Inhalt</label>
+          <textarea id="content" class="form-control" formControlName="content" rows="5" placeholder="Bitte geben Sie Ihren Freitext ein"></textarea>
+        </div>
+      </form>
+    </div>
   </section>
   <footer>
     <button (click)="close()" class="btn-secondary">Abbrechen</button>
+    <button (click)="onAddWidget()">Widget speichern</button>
   </footer>
 </div>

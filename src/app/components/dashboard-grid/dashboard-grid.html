@@ -1,12 +1,22 @@
 <gridster [options]="options" class="empty">
-  @for (item of items; track item) {
+  @for (item of gridHandler.widgets; track item) {
   <gridster-item [item]="item" [ngClass]="{'item-placeholder': item.placeholder}">
     <div *ngIf="item.placeholder">
       {{item.label}}
       <button (click)="onAddWidgetClick(item)"><i class="fa-solid fa-plus"></i>Widget hinzufügen</button>
     </div>
     <div *ngIf="!item.placeholder">
-      {{item.label}}
+      <div class="header">
+        {{item.label}}
+        <i class="fa-regular fa-pen-to-square"></i>
+        <i class="fa-solid fa-x"></i>
+      </div>
+      <div class="content">
+        <span *ngIf="isTextWidget(item)">{{item.content}}</span>
+        <div *ngIf="isChartWidget(item)">
+          <ng-container *ngComponentOutlet="widgetComponentMapping['default']; injector:componentInjector(item.content)"></ng-container>
+        </div>
+      </div>
     </div>
   </gridster-item>
   }

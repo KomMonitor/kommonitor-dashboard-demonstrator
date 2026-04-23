@@ -30,5 +30,43 @@
         gap: .8em;
       }
     }
+
+    &:not(.item-placeholder) {
+
+      border-radius: .4em;
+
+      > div {
+        display: grid;
+        grid-template-rows: min-content auto;
+
+        .header {
+          display: flex;
+          align-items: center;
+
+          font-size: 16px;
+          font-weight: 600;
+          color: #000;
+          padding: .5em .8em;
+          border-bottom: 1px solid $kmd-border-color;
+
+          i {
+            color: $kmd-font-color;
+            font-size: .8em;
+          }
+
+          i:first-of-type {
+            margin-left: auto;
+          }
+
+          i + i {
+            margin-left: .4em; 
+          }
+        }
+
+        .content {
+          padding: .5em .8em;
+        }
+      }
+    }
   }
 }

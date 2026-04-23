@@ -41,19 +41,31 @@ body {
     color: $kmd-primary-color;
     font-weight: 700;
     font-size: 1.5rem;
-    color: $kmd-title-color;
   }
 
   h3 {
     font-size: 16px;
     font-weight: 600;
     color: $kmd-title-color;
+    margin-bottom: .2em !important;
   }
 
   hr {
     border: none;
     border-top: 1px solid $kmd-border-color;
     opacity: 1;
+
+    &.small {
+      margin: 0.5em 0 !important;
+    }
+  }
+
+  input, textarea {
+    font-size: 14px !important;
+  }
+
+  label {
+    font-size: 13px;
   }
 
   .btn-highlight {
