@@ -144,7 +144,7 @@ export class GridHandler {
         type: type,
         placeholder: false, 
         previewLabel: undefined,
-        content: formData.data.content
+        content: formData.data
       } : elem
     );
 
@@ -157,5 +157,32 @@ export class GridHandler {
   setUuid(items:KMD_GridsterItem[]):KMD_GridsterItem[] {
 
     return items.map(elem => {elem.id = uuidv4(); return elem;});
+  }
+
+  removeWidget(item: KMD_GridsterItem) {
+    
+    const current = this.dashboardDefinition.value;
+
+    const updatedWidgets = current.widgets.filter(elem => elem.id!=item.id);
+
+    this.dashboardDefinition.next({
+      ...current,
+      widgets: updatedWidgets
+    });
+  }
+
+  addRandomWidget() {
+
+    const current = this.dashboardDefinition.value;
+
+    current.widgets.push({
+      id: uuidv4(),
+      cols: 4,
+      rows: 4,
+      y: 0,
+      x: 0,
+      label: 'Platzhalter (neu)',
+      placeholder: true
+    });
   }
 }

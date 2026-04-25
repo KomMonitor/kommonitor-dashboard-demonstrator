@@ -60,12 +60,19 @@ body {
     }
   }
 
-  input, textarea {
+  input, textarea, select {
     font-size: 14px !important;
   }
 
   label {
     font-size: 13px;
+  }
+
+  .subtext {
+    font-size: 11px;
+    color: $kmd-font-color;
+    margin-top: -.1em;
+    display: block;
   }
 
   .btn-highlight {

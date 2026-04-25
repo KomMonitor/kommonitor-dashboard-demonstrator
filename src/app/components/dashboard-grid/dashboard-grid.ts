@@ -9,7 +9,7 @@ import { Test } from '../../test/test';
 
 @Component({
   selector: 'dashboard-grid',
-  imports: [CommonModule, Gridster, GridsterItem, Test],
+  imports: [CommonModule, Gridster, GridsterItem],
   templateUrl: './dashboard-grid.html',
   styleUrl: './dashboard-grid.scss',
 })
@@ -67,5 +67,9 @@ export class DashboardGrid implements OnInit {
 
   isChartWidget(item:KMD_GridsterItem) {
     return item.type==KMD_WidgetTypes.BARCHART || item.type==KMD_WidgetTypes.TIMESERIES;
+  }
+
+  onWidgetCloseClick(item: KMD_GridsterItem) {
+    this.gridHandler.removeWidget(item);
   }
 }

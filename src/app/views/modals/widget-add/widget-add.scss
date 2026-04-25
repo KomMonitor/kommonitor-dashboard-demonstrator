@@ -17,9 +17,13 @@
     }
 
     form {
-      > div {
+      .data-section {
         margin-bottom: 1.5em;
       }
+    }
+
+    .bottom-spacing {
+      margin-bottom: 1em;
     }
   }
 

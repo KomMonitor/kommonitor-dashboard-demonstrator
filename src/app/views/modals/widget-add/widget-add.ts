@@ -42,7 +42,12 @@ export class WidgetAdd {
       width: [this.widget.cols, Validators.required],
       height: [this.widget.rows, Validators.required],
       data: this.fb.group({
-        content: ['']
+        content: [''],
+        indicator: [''],
+        spatialUnit: [''],
+        classificationMethod: [''],
+        meanLine: [''],
+        barchartLabel: ['']
       })
     });
   }
