@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <div class="data-section">
+    <h3>Daten</h3>
+    <hr class="small">
+    <div class="split-view bottom-spacing">
+      <div>
+        <label for="indicator" class="form-label">Indikator</label>
+        <select id="indicator" class="form-select" formControlName="indicator">
+          <option value="" disabled [selected]="true">-- Auswählen --</option>
+        </select>
+        <span class="subtext">Wählen Sie den Indikator</span>
+      </div>
+      <div>
+        <label for="spatial-unit" class="form-label">Raumebene</label>
+        <select id="spatial-unit" class="form-select" formControlName="spatialUnit">
+          <option value="" disabled [selected]="true">-- Auswählen --</option>
+        </select>
+        <span class="subtext">Auswahl der räumlichen Ebene</span>
+      </div>
+    </div>
+    <div>
+      <label for="aggregation" class="form-label">Aggregation</label>
+      <select id="aggregation" class="form-select" formControlName="aggregation">
+        <option value="sum">Summe</option>
+        <option value="mean">Mittelwert</option>
+        <option value="median">Median</option>
+      </select>
+      <span class="subtext">Aggregationsverfahren für die Zeitreihenwerte</span>
+    </div>
+  </div>
+</form>

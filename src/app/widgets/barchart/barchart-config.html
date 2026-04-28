@@ -1,0 +1,50 @@
+<form [formGroup]="form">
+  <div class="data-section">
+    <h3>Daten</h3>
+    <hr class="small">
+    <div class="split-view bottom-spacing">
+      <div>
+        <label for="indicator" class="form-label">Indikator</label>
+        <select id="indicator" class="form-select" formControlName="indicator">
+          <option value="" disabled [selected]="true">-- Auswählen --</option>
+        </select>
+        <span class="subtext">Wählen Sie den Indikator</span>
+      </div>
+      <div>
+        <label for="spatial-unit" class="form-label">Raumebene</label>
+        <select id="spatial-unit" class="form-select" formControlName="spatialUnit">
+          <option value="" disabled [selected]="true">-- Auswählen --</option>
+        </select>
+        <span class="subtext">Auswahl der räumlichen Ebene</span>
+      </div>
+    </div>
+    <div>
+      <label for="classification" class="form-label">Klassifizierungsverfahren</label>
+      <select id="classification" class="form-select" formControlName="classificationMethod">
+        <option value="" disabled [selected]="true">-- Auswählen --</option>
+        <option>Gleiche Intervalle</option>
+        <option>Jenks</option>
+        <option>Quantile</option>
+      </select>
+      <span class="subtext">Wählen Sie ein Verfahren zur Klassifizierung der Werte</span>
+    </div>
+  </div>
+  <div class="data-section">
+    <h3>Layout</h3>
+    <hr class="small">
+    <div class="bottom-spacing">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="mean-line" formControlName="meanLine">
+        <label class="form-check-label" for="mean-line">Durchschnittslinie</label>
+      </div>
+      <span class="subtext">Wenn aktiv, wird eine Durchschnittslinie zur Kennzeichnung des arithmetischen Mittels angezeigt</span>
+    </div>
+    <div class="bottom-spacing">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="barchart-label" formControlName="barchartLabel">
+        <label class="form-check-label" for="barchart-label">Name der Raumeinheiten anzeigen</label>
+      </div>
+      <span class="subtext">Wenn aktiv, werden die Namen der Raumeinheiten angezeigt</span>
+    </div>
+  </div>
+</form>

@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Injector, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Gridster, GridsterConfig, GridsterItem } from 'angular-gridster2';
-import { GridHandler, KMD_GridsterItem, KMD_WidgetTypes } from '../../services/grid/grid-handler';
+import { ChangeDetectorRef, Component, Injector, OnInit, Type } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Gridster, GridsterConfig, GridsterItem } from 'angular-gridster2';
+import { GridHandler, KMD_GridsterItem } from '../../services/grid/grid-handler';
 import { WidgetAdd } from '../../views/modals/widget-add/widget-add';
-import { Test } from '../../test/test';
-
 
 @Component({
   selector: 'dashboard-grid',
@@ -14,25 +12,18 @@ import { Test } from '../../test/test';
   styleUrl: './dashboard-grid.scss',
 })
 export class DashboardGrid implements OnInit {
- 
-  widgetComponentMapping = {
-    default: Test
-  }
-
   options: GridsterConfig = {
     minRows: 12,
     minCols: 12,
     draggable: {
-      enabled: true
+      enabled: true,
     },
     resizable: {
-      enabled: true
+      enabled: true,
     },
     pushItems: false, // ggf kritisch, verschiebt items
-    pushResizeItems: true // ggf kritisch, verschiebt items
+    pushResizeItems: true, // ggf kritisch, verschiebt items
   };
-
-  widgetTypeOptions = KMD_WidgetTypes;
 
   items!: KMD_GridsterItem[];
 
@@ -40,7 +31,7 @@ export class DashboardGrid implements OnInit {
     public gridHandler: GridHandler,
     private modalService: NgbModal,
     private cdr: ChangeDetectorRef,
-    private injector: Injector
+    private injector: Injector,
   ) {}
 
   ngOnInit(): void {
@@ -48,25 +39,19 @@ export class DashboardGrid implements OnInit {
   }
 
   onAddWidgetClick(item: KMD_GridsterItem) {
-    const modalRef = this.modalService.open(WidgetAdd, {centered: true});
+    const modalRef = this.modalService.open(WidgetAdd, { centered: true });
     modalRef.componentInstance.widget = item;
   }
 
   componentInjector(item: any): Injector {
     return Injector.create({
-      providers: [
-        { provide: 'WIDGET_DATA', useValue: item }
-      ],
-      parent: this.injector
+      providers: [{ provide: 'WIDGET_DATA', useValue: item }],
+      parent: this.injector,
     });
   }
 
-  isTextWidget(item:KMD_GridsterItem) {
-    return item.type==KMD_WidgetTypes.TEXT;
-  }
-
-  isChartWidget(item:KMD_GridsterItem) {
-    return item.type==KMD_WidgetTypes.BARCHART || item.type==KMD_WidgetTypes.TIMESERIES;
+  getWidgetComponent(item: KMD_GridsterItem): Type<any> | null {
+    return item.widgetDefinition?.widgetComponent ?? null;
   }
 
   onWidgetCloseClick(item: KMD_GridsterItem) {

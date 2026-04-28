@@ -1,0 +1,11 @@
+@use "variables" as *;
+
+.data-section {
+  margin-bottom: 1.5em;
+}
+
+.split-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}

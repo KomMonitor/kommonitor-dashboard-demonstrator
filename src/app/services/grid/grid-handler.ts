@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ToastService } from '../toast/toast-service';
 import { v4 as uuidv4 } from "uuid";
+import { ToastService } from '../toast/toast-service';
+import { WidgetDefinition } from '../widget-definition';
 
 export interface GridLayoutOption {
   id: number;
@@ -21,19 +22,12 @@ export interface KMD_GridsterItem {
   placeholder?: boolean
   previewLabel?: string;
   content?: any;
-  type?: KMD_WidgetTypes;
+  widgetDefinition?: WidgetDefinition;
 }
 
 export interface DashboardSubject {
   layoutId: number | undefined;
   widgets: KMD_GridsterItem[];
-}
-
-export enum KMD_WidgetTypes {
-  TEXT,
-  BARCHART,
-  TIMESERIES,
-  DATATABLE
 }
 
 export interface WidgetFormObject {
@@ -131,7 +125,7 @@ export class GridHandler {
   }
 
   // more like replace placeholder
-  addWidget(widget: KMD_GridsterItem, type: KMD_WidgetTypes, formData:WidgetFormObject) {
+  addWidget(widget: KMD_GridsterItem, widgetDefinition: WidgetDefinition, formData: WidgetFormObject) {
 
     const current = this.dashboardDefinition.value;
 
@@ -141,7 +135,7 @@ export class GridHandler {
         cols: formData.width,
         rows: formData.height,
         label: formData.title,
-        type: type,
+        widgetDefinition: widgetDefinition,
         placeholder: false, 
         previewLabel: undefined,
         content: formData.data
