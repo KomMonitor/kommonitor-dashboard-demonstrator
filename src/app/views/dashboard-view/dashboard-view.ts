@@ -1,16 +1,15 @@
-import { DashboardGrid } from './../../components/dashboard-grid/dashboard-grid';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
-import { LayoutSelection } from '../modals/layout-selection/layout-selection';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 import { GridHandler } from '../../services/grid/grid-handler';
 import { ToastService } from '../../services/toast/toast-service';
+import { LayoutSelection } from '../modals/layout-selection/layout-selection';
+import { DashboardGrid } from './../../components/dashboard-grid/dashboard-grid';
 
 @Component({
   selector: 'dashboard-view',
   imports: [
     CommonModule, 
-    LayoutSelection,
     DashboardGrid
 ],
   templateUrl: './dashboard-view.html',
