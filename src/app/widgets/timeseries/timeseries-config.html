@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <div class="data-section">
+  <!-- <div class="data-section">
     <h3>Daten</h3>
     <hr class="small">
     <div class="split-view bottom-spacing">
@@ -26,6 +26,54 @@
         <option value="median">Median</option>
       </select>
       <span class="subtext">Aggregationsverfahren für die Zeitreihenwerte</span>
+    </div>
+  </div> -->
+
+  <div class="data-section">
+    <h3>Diagramm-Konfiguration</h3>
+    <hr class="small">
+    <div class="split-view bottom-spacing">
+      <div>
+        <label for="x-axis-label" class="form-label">X-Achsenbeschriftung</label>
+        <input id="x-axis-label" type="text" class="form-control" formControlName="xAxisLabel" placeholder="z.B. Jahr">
+        <span class="subtext">Beschriftung der horizontalen Achse</span>
+      </div>
+      <div>
+        <label for="y-axis-label" class="form-label">Y-Achsenbeschriftung</label>
+        <input id="y-axis-label" type="text" class="form-control" formControlName="yAxisLabel" placeholder="z.B. Wert">
+        <span class="subtext">Beschriftung der vertikalen Achse</span>
+      </div>
+    </div>
+    <div class="split-view bottom-spacing">
+      <div>
+        <label for="legend-position" class="form-label">Legendenposition</label>
+        <select id="legend-position" class="form-select" formControlName="legendPosition">
+          <option value="top">Oben</option>
+          <option value="bottom">Unten</option>
+          <option value="left">Links</option>
+          <option value="right">Rechts</option>
+          <option value="none">Ausblenden</option>
+        </select>
+        <span class="subtext">Position der Diagrammlegende</span>
+      </div>
+      <div>
+        <label class="form-label">Skalierung</label>
+        <div class="form-check">
+          <input id="scale-to-data" type="checkbox" class="form-check-input" formControlName="scaleToData">
+          <label for="scale-to-data" class="form-check-label">Y-Achse auf Datenwerte anpassen</label>
+        </div>
+        <span class="subtext">Skaliert die Y-Achse auf den Wertebereich der Daten</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <h3>Zeitreihendaten (JSON)</h3>
+    <hr class="small">
+    <div>
+      <label for="timeseries-data" class="form-label">Daten</label>
+      <textarea id="timeseries-data" class="form-control" formControlName="data" rows="10" style="font-family: monospace; font-size: 0.8rem;"></textarea>
+      <span class="subtext">Zeitreihendaten im JSON-Format (TimeseriesData)</span>
     </div>
   </div>
 </form>

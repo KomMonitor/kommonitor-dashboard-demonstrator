@@ -1,5 +1,9 @@
-<div class="placeholder">
-  <i class="fa-solid fa-chart-line"></i>
-  <span>Zeitreihendiagramm</span>
-  <small>Indikator: {{data?.indicator || '—'}} | Raumebene: {{data?.spatialUnit || '—'}}</small>
+<div class="diagram">
+  <lib-timeseries-chart
+    [data]="chartData"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [scaleToData]="scaleToData"
+    [legendConfig]="legendConfig"
+  ></lib-timeseries-chart>
 </div>

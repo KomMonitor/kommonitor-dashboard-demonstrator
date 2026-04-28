@@ -36,6 +36,7 @@
       border-radius: .4em;
 
       > div {
+        height: 100%;
         display: grid;
         grid-template-rows: min-content auto;
 
@@ -66,6 +67,7 @@
 
         .content {
           padding: .5em .8em;
+          overflow: hidden;
         }
       }
     }
