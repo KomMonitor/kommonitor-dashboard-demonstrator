@@ -19,10 +19,11 @@ export class TimeseriesConfig implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const initial = this.bridge.getInitialData();
     this.form = this.fb.group({
-      indicator: [''],
-      spatialUnit: [''],
-      aggregation: ['sum']
+      indicator: [initial?.indicator ?? ''],
+      spatialUnit: [initial?.spatialUnit ?? ''],
+      aggregation: [initial?.aggregation ?? 'sum']
     });
     this.bridge.register(this.form);
   }

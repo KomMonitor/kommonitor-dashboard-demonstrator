@@ -2,6 +2,8 @@
   <header>
     @if (selectedDefinition == undefined) {
       <span>Widget-Typ auswählen</span>
+    } @else if (editMode) {
+      <span>Widget bearbeiten ({{ selectedDefinition.label }})</span>
     } @else {
       <span>Neues Widget erstellen ({{ selectedDefinition.label }})</span>
     }
@@ -60,6 +62,6 @@
   </section>
   <footer>
     <button (click)="close()" class="btn-secondary">Abbrechen</button>
-    <button (click)="onAddWidget()" [disabled]="!selectedDefinition">Widget speichern</button>
+    <button (click)="onAddWidget()" [disabled]="!selectedDefinition">{{ editMode ? 'Änderungen speichern' : 'Widget speichern' }}</button>
   </footer>
 </div>

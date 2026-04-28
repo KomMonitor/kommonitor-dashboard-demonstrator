@@ -165,6 +165,27 @@ export class GridHandler {
     });
   }
 
+  updateWidget(widget: KMD_GridsterItem, widgetDefinition: WidgetDefinition, formData: WidgetFormObject) {
+    const current = this.dashboardDefinition.value;
+
+    const updatedWidgets = current.widgets.map(elem =>
+      elem.id === widget.id ? {
+        ...elem,
+        cols: formData.width,
+        rows: formData.height,
+        label: formData.title,
+        widgetDefinition: widgetDefinition,
+        content: formData.data
+      } : elem
+    );
+
+    this.dashboardDefinition.next({
+      ...current,
+      widgets: updatedWidgets
+    });
+    this.toastService.success('Widget aktualisiert');
+  }
+
   addRandomWidget() {
 
     const current = this.dashboardDefinition.value;

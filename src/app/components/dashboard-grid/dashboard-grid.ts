@@ -43,6 +43,11 @@ export class DashboardGrid implements OnInit {
     modalRef.componentInstance.widget = item;
   }
 
+  onEditWidgetClick(item: KMD_GridsterItem) {
+    const modalRef = this.modalService.open(WidgetAdd, { centered: true });
+    modalRef.componentInstance.widget = item;
+  }
+
   componentInjector(item: any): Injector {
     return Injector.create({
       providers: [{ provide: 'WIDGET_DATA', useValue: item }],

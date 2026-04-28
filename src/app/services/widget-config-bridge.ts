@@ -7,6 +7,7 @@ export const WIDGET_CONTEXT = new InjectionToken<KMD_GridsterItem>('WIDGET_CONTE
 @Injectable()
 export class WidgetConfigBridge {
   private form: FormGroup | null = null;
+  private initialData: any = null;
 
   register(form: FormGroup): void {
     this.form = form;
@@ -14,5 +15,13 @@ export class WidgetConfigBridge {
 
   getForm(): FormGroup | null {
     return this.form;
+  }
+
+  setInitialData(data: any): void {
+    this.initialData = data;
+  }
+
+  getInitialData(): any {
+    return this.initialData;
   }
 }

@@ -19,12 +19,13 @@ export class BarchartConfig implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const initial = this.bridge.getInitialData();
     this.form = this.fb.group({
-      indicator: [''],
-      spatialUnit: [''],
-      classificationMethod: [''],
-      meanLine: [false],
-      barchartLabel: [false]
+      indicator: [initial?.indicator ?? ''],
+      spatialUnit: [initial?.spatialUnit ?? ''],
+      classificationMethod: [initial?.classificationMethod ?? ''],
+      meanLine: [initial?.meanLine ?? false],
+      barchartLabel: [initial?.barchartLabel ?? false]
     });
     this.bridge.register(this.form);
   }

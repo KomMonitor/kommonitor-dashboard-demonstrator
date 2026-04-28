@@ -19,8 +19,9 @@ export class TextConfig implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const initial = this.bridge.getInitialData();
     this.form = this.fb.group({
-      content: ['']
+      content: [initial?.content ?? '']
     });
     this.bridge.register(this.form);
   }

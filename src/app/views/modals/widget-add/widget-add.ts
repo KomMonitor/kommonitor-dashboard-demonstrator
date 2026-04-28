@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -19,12 +19,16 @@ import { WIDGET_REGISTRY, WidgetDefinition } from '../../../services/widget-regi
   templateUrl: './widget-add.html',
   styleUrl: './widget-add.scss',
 })
-export class WidgetAdd {
+export class WidgetAdd implements OnInit {
   @Input() widget!: KMD_GridsterItem;
 
   widgetRegistry = WIDGET_REGISTRY;
   selectedDefinition: WidgetDefinition | undefined;
   commonForm!: FormGroup;
+
+  get editMode(): boolean {
+    return !!this.widget?.widgetDefinition;
+  }
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -32,6 +36,18 @@ export class WidgetAdd {
     private bridge: WidgetConfigBridge,
     private fb: FormBuilder,
   ) {}
+
+  ngOnInit(): void {
+    if (this.widget.widgetDefinition) {
+      this.bridge.setInitialData(this.widget.content);
+      this.onWidgetTypeSelectionClick(this.widget.widgetDefinition);
+      this.commonForm.patchValue({
+        title: this.widget.label,
+        width: this.widget.cols,
+        height: this.widget.rows,
+      });
+    }
+  }
 
   close() {
     this.activeModal.close();
@@ -59,10 +75,17 @@ export class WidgetAdd {
   onAddWidget() {
     const specificData = this.bridge.getForm()?.value;
     if (!this.commonForm?.valid || !this.selectedDefinition) return;
-    this.gridHandler.addWidget(this.widget, this.selectedDefinition, {
-      ...this.commonForm.value,
-      data: specificData,
-    });
+    if (this.editMode) {
+      this.gridHandler.updateWidget(this.widget, this.selectedDefinition, {
+        ...this.commonForm.value,
+        data: specificData,
+      });
+    } else {
+      this.gridHandler.addWidget(this.widget, this.selectedDefinition, {
+        ...this.commonForm.value,
+        data: specificData,
+      });
+    }
     this.activeModal.close();
   }
 }
