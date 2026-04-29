@@ -1,8 +1,15 @@
 @use "variables" as *;
 
-:host {
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
 
   section {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding-right: 0.25em;
 
     .type-selection {
       display: flex;
