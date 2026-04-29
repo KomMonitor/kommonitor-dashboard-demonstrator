@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TimeseriesData } from 'kommonitor-toolbox';
 import { WidgetConfigBridge } from '../../services/widget-config-bridge';
+import { TimeseriesWidgetData } from './timeseries-widget-data';
 
 const DEFAULT_DATA: TimeseriesData = {
   datasets: [
@@ -36,7 +37,7 @@ export class TimeseriesConfig implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const initial = this.bridge.getInitialData();
+    const initial = this.bridge.getInitialData() as Partial<TimeseriesWidgetData> | null;
     this.form = this.fb.group({
       indicator: [initial?.indicator ?? ''],
       spatialUnit: [initial?.spatialUnit ?? ''],

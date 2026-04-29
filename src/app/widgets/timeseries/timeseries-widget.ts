@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { TimeseriesChartComponent, TimeseriesData } from 'kommonitor-toolbox';
+import { TimeseriesWidgetData } from './timeseries-widget-data';
 
 @Component({
   selector: 'app-timeseries-widget',
@@ -14,7 +15,7 @@ export class TimeseriesWidget {
   scaleToData: boolean;
   legendConfig: object;
 
-  constructor(@Inject('WIDGET_DATA') public data: any) {
+  constructor(@Inject('WIDGET_DATA') public data: TimeseriesWidgetData) {
     this.xAxisLabel = data?.xAxisLabel ?? '';
     this.yAxisLabel = data?.yAxisLabel ?? '';
     this.scaleToData = data?.scaleToData ?? false;
@@ -23,7 +24,7 @@ export class TimeseriesWidget {
     try {
       this.chartData = typeof data?.data === 'string'
         ? JSON.parse(data.data)
-        : (data?.data ?? { datasets: [], labels: [] });
+        : { datasets: [], labels: [] };
     } catch {
       this.chartData = { datasets: [], labels: [] };
     }
