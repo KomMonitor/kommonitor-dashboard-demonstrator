@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <div class="data-section">
+  <!-- <div class="data-section">
     <h3>Daten</h3>
     <hr class="small">
     <div class="split-view bottom-spacing">
@@ -28,10 +28,33 @@
       </select>
       <span class="subtext">Wählen Sie ein Verfahren zur Klassifizierung der Werte</span>
     </div>
-  </div>
+  </div> -->
   <div class="data-section">
     <h3>Layout</h3>
     <hr class="small">
+    <div class="bottom-spacing">
+      <label for="x-axis-label" class="form-label">Beschriftung Kategorienachse</label>
+      <input type="text" id="x-axis-label" class="form-control" formControlName="xAxisLabel" placeholder="z. B. Raumeinheit">
+      <span class="subtext">Beschriftung der Kategorienachse (X bei vertikal, Y bei horizontal)</span>
+    </div>
+    <div class="bottom-spacing">
+      <label for="y-axis-label" class="form-label">Beschriftung Werteachse</label>
+      <input type="text" id="y-axis-label" class="form-control" formControlName="yAxisLabel" placeholder="z. B. Indikatorwert">
+      <span class="subtext">Beschriftung der Werteachse (Y bei vertikal, X bei horizontal)</span>
+    </div>
+    <div class="bottom-spacing">
+      <label for="example-data" class="form-label">Beispieldaten (JSON)</label>
+      <textarea id="example-data" rows="6" class="form-control" formControlName="exampleData"></textarea>
+      <span class="subtext">Gültiges BarChart-JSON (labels + datasets). Beispiel voreingestellt.</span>
+    </div>
+    <div class="bottom-spacing">
+      <label for="orientation" class="form-label">Ausrichtung</label>
+      <select id="orientation" class="form-select" formControlName="orientation">
+        <option value="vertical">Vertikal (Säulen)</option>
+        <option value="horizontal">Horizontal (Balken)</option>
+      </select>
+      <span class="subtext">Legt die Ausrichtung des Diagramms fest</span>
+    </div>
     <div class="bottom-spacing">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="mean-line" formControlName="meanLine">
@@ -42,9 +65,30 @@
     <div class="bottom-spacing">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="barchart-label" formControlName="barchartLabel">
-        <label class="form-check-label" for="barchart-label">Name der Raumeinheiten anzeigen</label>
+        <label class="form-check-label" for="barchart-label">Wertelabels anzeigen</label>
       </div>
-      <span class="subtext">Wenn aktiv, werden die Namen der Raumeinheiten angezeigt</span>
+      <span class="subtext">Wenn aktiv, wird der Wert auf jedem Balken angezeigt</span>
+    </div>
+    <div class="bottom-spacing">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="stacked" formControlName="stacked">
+        <label class="form-check-label" for="stacked">Gestapelt</label>
+      </div>
+      <span class="subtext">Wenn aktiv, werden mehrere Datensätze gestapelt statt nebeneinander dargestellt</span>
+    </div>
+    <div class="bottom-spacing">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="scale-to-data" formControlName="scaleToData">
+        <label class="form-check-label" for="scale-to-data">Achse an Daten anpassen</label>
+      </div>
+      <span class="subtext">Wenn aktiv, beginnt die Werteachse beim Datumminimum statt bei Null</span>
+    </div>
+    <div class="bottom-spacing">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="show-legend" formControlName="showLegend">
+        <label class="form-check-label" for="show-legend">Legende anzeigen</label>
+      </div>
+      <span class="subtext">Wenn aktiv, wird die Diagrammlegende eingeblendet</span>
     </div>
   </div>
 </form>

@@ -1,5 +1,10 @@
-<div class="placeholder">
-  <i class="fa-solid fa-chart-bar"></i>
-  <span>Balkendiagramm</span>
-  <small>Indikator: {{data?.indicator || '—'}} | Raumebene: {{data?.spatialUnit || '—'}}</small>
-</div>
+<lib-bar-chart
+  [data]="chartData"
+  [xAxisLabel]="data.xAxisLabel"
+  [yAxisLabel]="data.yAxisLabel"
+  [orientation]="data.orientation"
+  [stacked]="data.stacked"
+  [scaleToData]="data.scaleToData"
+  [showValueLabels]="data.barchartLabel"
+  [showLegend]="data.showLegend"
+></lib-bar-chart>
