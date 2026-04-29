@@ -1,0 +1,61 @@
+<form [formGroup]="form">
+  <div class="data-section">
+    <h3>Kartenausschnitt</h3>
+    <hr class="small">
+    <div class="split-view bottom-spacing">
+      <div>
+        <label for="center-lon" class="form-label">Längengrad (Lon)</label>
+        <input id="center-lon" type="number" step="0.01" class="form-control" formControlName="centerLon">
+        <span class="subtext">Mittelpunkt der Karte (Längengrad)</span>
+      </div>
+      <div>
+        <label for="center-lat" class="form-label">Breitengrad (Lat)</label>
+        <input id="center-lat" type="number" step="0.01" class="form-control" formControlName="centerLat">
+        <span class="subtext">Mittelpunkt der Karte (Breitengrad)</span>
+      </div>
+    </div>
+    <div class="bottom-spacing">
+      <label for="zoom" class="form-label">Zoomstufe</label>
+      <input id="zoom" type="number" min="1" max="20" class="form-control" formControlName="zoom">
+      <span class="subtext">Initiale Zoomstufe der Karte (1–20)</span>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <h3>Basiskarte</h3>
+    <hr class="small">
+    <div class="bottom-spacing">
+      <label for="base-layer" class="form-label">Basiskarten-Typ</label>
+      <select id="base-layer" class="form-select" formControlName="baseLayer">
+        <option value="osm">OpenStreetMap (Standard)</option>
+        <option value="tile">Eigener XYZ-Tile-Layer</option>
+      </select>
+      <span class="subtext">Wählen Sie die Hintergrundkarte</span>
+    </div>
+    @if (form.get('baseLayer')?.value === 'tile') {
+      <div class="bottom-spacing">
+        <label for="tile-url" class="form-label">Tile-URL</label>
+        <input id="tile-url" type="text" class="form-control" formControlName="tileUrl"
+          placeholder="https://tile.openstreetmap.org/{z}/{x}/{y}.png">
+        <span class="subtext">URL-Vorlage mit &#123;z&#125;, &#123;x&#125;, &#123;y&#125; Platzhaltern</span>
+      </div>
+      <div class="bottom-spacing">
+        <label for="tile-attribution" class="form-label">Quellenangabe</label>
+        <input id="tile-attribution" type="text" class="form-control" formControlName="tileAttribution"
+          placeholder="z. B. © OpenStreetMap-Mitwirkende">
+        <span class="subtext">Optionaler Urheberrechtshinweis für den Tile-Layer</span>
+      </div>
+    }
+  </div>
+
+  <div class="data-section">
+    <h3>GeoJSON-Overlay (optional)</h3>
+    <hr class="small">
+    <div class="bottom-spacing">
+      <label for="geo-json" class="form-label">GeoJSON</label>
+      <textarea id="geo-json" rows="10" class="form-control" formControlName="geoJson"
+        placeholder='{"type":"FeatureCollection","features":[]}'></textarea>
+      <span class="subtext">Optionaler GeoJSON-FeatureCollection-Text, der als Vektor-Layer auf der Karte dargestellt wird. Leer lassen, um keinen Overlay anzuzeigen.</span>
+    </div>
+  </div>
+</form>

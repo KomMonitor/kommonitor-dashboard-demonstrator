@@ -1,4 +1,5 @@
 import './barchart/barchart.handler';
-import './timeseries/timeseries.handler';
+import './map/map.handler';
 import './text/text.handler';
+import './timeseries/timeseries.handler';
 
